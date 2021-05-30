@@ -12,21 +12,19 @@ namespace UFOT.UFO
 {
     public class CaptureZone : MonoBehaviour
     {
-        [SerializeField] float captureTimeLimit = 10f;
-
         List<HumanActor> targets = new List<HumanActor>();
         HumanActor target = null;
         float captureTime = 0f;
 
         UFOData ufoData;
-        CaptureHumanCommand.Factory commandFactory;
+        CaptureHumanCommand.Factory captureHuman;
         SignalBus signalBus;
 
         [Inject]
-        void Construct(UFOData ufoData, CaptureHumanCommand.Factory commandFactory, SignalBus signalBus)
+        void Construct(UFOData ufoData, CaptureHumanCommand.Factory captureHuman, SignalBus signalBus)
         {
             this.ufoData = ufoData;
-            this.commandFactory = commandFactory;
+            this.captureHuman = captureHuman;
             this.signalBus = signalBus;
         }
 
@@ -42,30 +40,8 @@ namespace UFOT.UFO
 
         void Update()
         {
-            if (ufoData.Cargo == ufoData.UFOConfig.Cargo.Value)
-                return;
-
-            if (target == null)
-            {
-                captureTime = 0f;
-
-                if (targets.Count == 0)
-                    return;
-
-                target = GetCaptureTarget();
-            }
-
-            if (target == null)
-                return;
-
-            captureTime += Time.deltaTime;
-            target.SetCaptureProgress(captureTime / captureTimeLimit * 100f);
-
-            if (captureTime >= captureTimeLimit)
-            {
-                commandFactory.Create(target).Execute();
-                target = null;
-            }
+            TryCapture();
+            UpdateSize();
         }
 
         void OnTriggerEnter(Collider other)
@@ -95,10 +71,43 @@ namespace UFOT.UFO
         HumanActor GetCaptureTarget()
         {
             return targets.Find((HumanActor human) => {
-                if (ufoData.Cargo + human.HumanConfig.weight <= ufoData.UFOConfig.Cargo.Value)
+                if (ufoData.Cargo + human.HumanConfig.weight <= ufoData.UFOConfig.maxCargo.Value)
                     return true;
                 return false;
             });
+        }
+
+        void TryCapture()
+        {
+            if (ufoData.Cargo == ufoData.UFOConfig.maxCargo.Value)
+                return;
+
+            if (target == null)
+            {
+                captureTime = 0f;
+
+                if (targets.Count == 0)
+                    return;
+
+                target = GetCaptureTarget();
+            }
+
+            if (target == null)
+                return;
+
+            captureTime += Time.deltaTime;
+            target.SetCaptureProgress(captureTime / ufoData.UFOConfig.captureTime.Value * 100f);
+
+            if (captureTime >= ufoData.UFOConfig.captureTime.Value)
+            {
+                captureHuman.Create(target).Execute();
+                target = null;
+            }
+        }
+
+        void UpdateSize()
+        {
+            transform.localScale = Vector3.one * (this.ufoData.UFOConfig.captureSize.Value / this.ufoData.UFOConfig.captureSize.BaseValue);
         }
     }
 }

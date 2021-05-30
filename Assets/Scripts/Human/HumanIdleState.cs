@@ -21,6 +21,7 @@ namespace UFOT.Human
             stateTime = 0f;
             waitTime = Random.Range(minWaitTime, maxWaitTime);
             fsm.Animator.CrossFade(idleId, 0.2f);
+            fsm.NavMeshAgent.isStopped = false;
         }
 
         public override void OnUpdate(float dt)
@@ -30,8 +31,8 @@ namespace UFOT.Human
             {
                 if (Random.Range(0f, chanceToWalk + chanceToReturn) < chanceToWalk)
                     fsm.MakeTransition<HumanWalkState>();
-                // else
-                //     fsm.MakeTransition<HumanReturnState>();
+                else
+                    fsm.MakeTransition<HumanReturnState>();
             }
         }
     }

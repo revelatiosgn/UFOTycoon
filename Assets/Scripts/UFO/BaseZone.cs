@@ -10,19 +10,19 @@ namespace UFOT.UFO
 {
     public class BaseZone : MonoBehaviour
     {
-        UnloadHumansCommand.Factory commandFactory;
+        UnloadHumansCommand.Factory unloadHumans;
         SignalBus signalBus;
 
         [Inject]
-        void Construct(UnloadHumansCommand.Factory commandFactory, SignalBus signalBus)
+        void Construct(UnloadHumansCommand.Factory unloadHumans, SignalBus signalBus)
         {
-            this.commandFactory = commandFactory;
+            this.unloadHumans = unloadHumans;
             this.signalBus = signalBus;
         }
 
         void OnTriggerEnter(Collider other)
         {
-            commandFactory.Create().Execute();
+            unloadHumans.Create().Execute();
             signalBus.Fire<BaseEnterSignal>();
         }
 

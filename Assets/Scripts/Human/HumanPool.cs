@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using System.Collections.Generic;
-
 using Zenject;
+
 using UFOT.Signals;
+using UFOT.Data;
 
 namespace UFOT.Human
 {
@@ -13,8 +14,7 @@ namespace UFOT.Human
 
         SignalBus signalBus;
 
-        [Inject]
-        void Construct(SignalBus signalBus)
+        public HumanPool(SignalBus signalBus)
         {
             this.signalBus = signalBus;
         }

@@ -12,7 +12,7 @@ namespace UFOT.Data
             Coins = ufoConfig.startCoins;
             Reward = 0;
             Cargo = 0f;
-            Health = ufoConfig.MaxHealth.Value;
+            Health = ufoConfig.maxHealth.Value;
         }
 
         public UFOConfig UFOConfig { get; private set; }

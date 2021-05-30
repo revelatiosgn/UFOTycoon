@@ -4,6 +4,7 @@ using UnityEngine;
 using Zenject;
 
 using UFOT.Data;
+using UFOT.Commands;
 
 namespace UFOT.UI
 {
@@ -13,9 +14,26 @@ namespace UFOT.UI
         [SerializeField] GameObject productPrefab;
         [SerializeField] ShopConfig shopConfig;
 
+        ShopProductPanel.Factory product;
+        PauseCommand.Factory pause;
+
+        [Inject]
+        void Construct(ShopProductPanel.Factory product, PauseCommand.Factory pause)
+        {
+            this.product = product;
+            this.pause = pause;
+        }
+
         void OnEnable()
         {
             PopulateProducts();
+            pause.Create(true).Execute();
+        }
+
+        void OnDisable()
+        {
+            PopulateProducts();
+            pause.Create(false).Execute();
         }
 
         void PopulateProducts()
@@ -26,12 +44,14 @@ namespace UFOT.UI
                     GameObject.Destroy(child.gameObject);
 
                 shopConfig.Products.ForEach(shopProduct => {
-                    Instantiate(productPrefab, productsList.transform);
+                    product.Create(shopProduct);
                 });
             }
-
-            for (int i = 0; i < shopConfig.Products.Count; i++)
-                productsList.transform.GetChild(i).GetComponent<ShopProductPanel>().SetProduct(shopConfig.Products[i]);
+            else
+            {
+                for (int i = 0; i < shopConfig.Products.Count; i++)
+                    productsList.transform.GetChild(i).GetComponent<ShopProductPanel>().SetProduct(shopConfig.Products[i]);
+            }
         }
     }
 }

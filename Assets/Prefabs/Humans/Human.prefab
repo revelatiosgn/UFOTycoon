@@ -645,8 +645,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minWaitTime: 1
-  maxWaitTime: 3
-  chanceToWalk: 5
+  maxWaitTime: 2
+  chanceToWalk: 10
   chanceToReturn: 1
 --- !u!114 &5742995506403277081
 MonoBehaviour:
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cff39b463d1e74a8a56bc5e2b41fd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkRadius: 5
+  walkRadius: 10
 --- !u!114 &983359282
 MonoBehaviour:
   m_ObjectHideFlags: 0

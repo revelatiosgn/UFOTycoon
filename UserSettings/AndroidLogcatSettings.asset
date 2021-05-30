@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "R58MC46S94V",
         "name": "com.DefaultCompany.UFOTycoon",
-        "processId": 16950,
+        "processId": 21273,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -48,6 +48,18 @@
             "deviceId": "R58MC46S94V",
             "name": "com.DefaultCompany.UFOTycoon",
             "processId": 16950,
+            "exited": false
+        },
+        {
+            "deviceId": "R58MC46S94V",
+            "name": "com.DefaultCompany.UFOTycoon",
+            "processId": 30143,
+            "exited": false
+        },
+        {
+            "deviceId": "R58MC46S94V",
+            "name": "com.DefaultCompany.UFOTycoon",
+            "processId": 21273,
             "exited": false
         }
     ],

@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d727da0d8dd68534b8f4039d0eb575cf, type: 3}
   m_Name: UFOConfig
   m_EditorClassIdentifier: 
-  startCoins: 1000
-  Speed: {fileID: 11400000, guid: 2be38bba899049e47abe7709e0c6c8df, type: 2}
-  Cargo: {fileID: 11400000, guid: f1ae6ca47f3754b448b28b8bf7b4b4de, type: 2}
-  MaxHealth: {fileID: 11400000, guid: b1e12deaf71827344ad0cc752c8465b5, type: 2}
+  startCoins: 0
+  speedMultiplier: 0.1
+  speed: {fileID: 11400000, guid: 2be38bba899049e47abe7709e0c6c8df, type: 2}
+  maxCargo: {fileID: 11400000, guid: f1ae6ca47f3754b448b28b8bf7b4b4de, type: 2}
+  maxHealth: {fileID: 11400000, guid: b1e12deaf71827344ad0cc752c8465b5, type: 2}
+  shipSize: {fileID: 11400000, guid: 02b076626bff41c439dd2d85186f2691, type: 2}
+  captureSize: {fileID: 11400000, guid: 57c8f352ea20ed2499d520b1ae8f5988, type: 2}
+  captureTime: {fileID: 11400000, guid: f44ce9fc64045b4499e923cc06bed32f, type: 2}

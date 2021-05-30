@@ -11,7 +11,7 @@ using UFOT.Signals;
 
 namespace UFOT.UI
 {
-    public class ShopProductPanel : MonoBehaviour
+    public class ShopProductPanel : UFODataView
     {
         [SerializeField] TMP_Text title;
         [SerializeField] TMP_Text value;
@@ -19,42 +19,31 @@ namespace UFOT.UI
         [SerializeField] Button buy;
 
         ShopProduct shopProduct;
-
-        UFOData ufoData;
-        PurchaseCommand.Factory commandFactory;
-        SignalBus signalBus;
+        PurchaseCommand.Factory purchase;
 
         [Inject]
-        void Construct(UFOData testData, PurchaseCommand.Factory commandFactory, SignalBus signalBus)
+        void Construct(ShopProduct shopProduct, PurchaseCommand.Factory purchase)
         {
-            this.ufoData = testData;
-            this.commandFactory = commandFactory;
-            this.signalBus = signalBus;
-        }
-
-        void OnEnable()
-        {
-            signalBus.Subscribe<UfoDataUpdatedSignal>(UpdateInfo);
-        }
-
-        void OnDisable()
-        {
-            signalBus.Unsubscribe<UfoDataUpdatedSignal>(UpdateInfo);
+            this.shopProduct = shopProduct;
+            this.purchase = purchase;
         }
 
         public void SetProduct(ShopProduct shopProduct)
         {
             this.shopProduct = shopProduct;
-            UpdateInfo();
+            UpdateView();
         }
 
         public void Purchase()
         {
-            commandFactory.Create(shopProduct).Execute();
+            purchase.Create(shopProduct).Execute();
         }
 
-        void UpdateInfo()
+        protected override void UpdateView()
         {
+            if (shopProduct == null)
+                return;
+
             title.text = shopProduct.Config.Title;
 
             int currentValue = Mathf.FloorToInt(shopProduct.Config.Value);
@@ -63,6 +52,10 @@ namespace UFOT.UI
             price.text = shopProduct.Cost.ToString();
 
             buy.interactable = ufoData.Coins >= shopProduct.Cost;
+        }
+
+        public class Factory : PlaceholderFactory<ShopProduct, ShopProductPanel>
+        {
         }
     }
 }

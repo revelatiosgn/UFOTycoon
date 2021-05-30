@@ -38,7 +38,6 @@ namespace UFOT.Human
 
             if (IsStopped())
             {
-                fsm.MakeTransition<HumanIdleState>();
                 humanPool.Push(humanActor);
             }
         }

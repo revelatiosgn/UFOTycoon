@@ -4,15 +4,18 @@ using UnityEngine;
 using Zenject;
 
 using UFOT.Data;
+using UFOT.Map;
 
 namespace UFOT.UFO
 {
     public class UFOController : MonoBehaviour
     {
         [SerializeField] FloatingJoystick joystick;
+        [SerializeField] MapBorder mapBorder;
 
         Rigidbody rb;
         UFOData ufoData;
+        Vector3 currentVelocity = Vector3.zero;
 
         [Inject]
         void Construct(UFOData ufoData)
@@ -25,10 +28,32 @@ namespace UFOT.UFO
             rb = GetComponent<Rigidbody>();
         }
 
-        void Update()
+        void FixedUpdate()
         {
             Vector3 input = Vector3.forward * joystick.Vertical + Vector3.right * joystick.Horizontal;
-            rb.velocity = input * ufoData.UFOConfig.Speed.Value * 0.1f;
+            rb.velocity = input * ufoData.UFOConfig.speed.Value * ufoData.UFOConfig.speedMultiplier;
+
+            HandleBorders();
+        }
+
+        void HandleBorders()
+        {
+            if (mapBorder == null)
+                return;
+
+            Vector3 clampedVelocity = rb.velocity;
+
+            if (rb.position.x <= mapBorder.Left && rb.velocity.x < 0f)
+                clampedVelocity.x = 0f;
+            else if (rb.position.x >= mapBorder.Right && rb.velocity.x > 0f)
+                clampedVelocity.x = 0f;
+
+            if (rb.position.z <= mapBorder.Bottom && rb.velocity.z < 0f)
+                clampedVelocity.z = 0f;
+            else if (rb.position.z >= mapBorder.Top && rb.velocity.z > 0f)
+                clampedVelocity.z = 0f;
+
+            rb.velocity = clampedVelocity;
         }
     }
 }

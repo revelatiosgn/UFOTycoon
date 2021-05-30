@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49864f50103189542942b3423459ef5b, type: 3}
-  m_Name: UFOCargo
+  m_Name: UFOShipSize
   m_EditorClassIdentifier: 
-  title: CARGO
-  baseValue: 150
-  currentValue: 150
+  title: SIZE
+  baseValue: 20
+  currentValue: 20

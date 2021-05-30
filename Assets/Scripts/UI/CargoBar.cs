@@ -16,11 +16,11 @@ namespace UFOT.UI
 
         protected override void UpdateView()
         {
-            cargoProgress.MaxValue = ufoData.UFOConfig.Cargo.Value;
+            cargoProgress.MaxValue = ufoData.UFOConfig.maxCargo.Value;
             cargoProgress.SetProgress(ufoData.Cargo);
 
             int current = Mathf.FloorToInt(ufoData.Cargo);
-            int max = Mathf.FloorToInt(ufoData.UFOConfig.Cargo.Value);
+            int max = Mathf.FloorToInt(ufoData.UFOConfig.maxCargo.Value);
             cargoFill.text = $"{current} / {max}";
 
             reward.text = ufoData.Reward.ToString();

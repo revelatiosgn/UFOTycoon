@@ -32,7 +32,7 @@ namespace UFOT.Commands
             if (target == null)
                 return;
 
-            if (ufoData.Cargo + target.HumanConfig.weight > ufoData.UFOConfig.Cargo.Value)
+            if (ufoData.Cargo + target.HumanConfig.weight > ufoData.UFOConfig.maxCargo.Value)
                 return;
 
             humanPool.Push(target);

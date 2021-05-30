@@ -4,25 +4,26 @@ using UnityEngine;
 using Zenject;
 
 using UFOT.Signals;
+using UFOT.Data;
 
 namespace UFOT.Human
 {
     public class HumanSpawner : MonoBehaviour
     {
-        [SerializeField] int maxHumans = 10;
-        [SerializeField] List<GameObject> humanPrefabs;
-        [SerializeField] float spawnDelay = 3f;
-
         List<HumanSpawn> spawns = new List<HumanSpawn>();
         float spawnTime = 0f;
 
         HumanPool humanPool;
+        HumanActor.Factory humanFactory;
+        HumansConfig humansConfig;
         SignalBus signalBus;
 
         [Inject]
-        void Construct(HumanPool humanPool, SignalBus signalBus)
+        void Construct(HumanPool humanPool, HumanActor.Factory humanFactory, HumansConfig humansConfig, SignalBus signalBus)
         {
             this.humanPool = humanPool;
+            this.humanFactory = humanFactory;
+            this.humansConfig = humansConfig;
             this.signalBus = signalBus;
         }
 
@@ -38,19 +39,23 @@ namespace UFOT.Human
 
         void Start()
         {
-            int extraHumans = maxHumans - transform.childCount;
-            for (int i = 0; i < extraHumans; i++)
-            {
-                GameObject randomPrefab = humanPrefabs[Random.Range(0, humanPrefabs.Count)];
-                HumanActor human = Instantiate(randomPrefab, transform).GetComponent<HumanActor>();
-                humanPool.Push(human);
-            }
+            InstantiateHumans();
         }
 
         void Update()
         {
             TrySpawn();
             spawnTime += Time.deltaTime;
+        }
+
+        void InstantiateHumans()
+        {
+            int extraHumans = humansConfig.maxInstances;
+            for (int i = 0; i < extraHumans; i++)
+            {
+                HumanActor human = humanFactory.Create(transform);
+                humanPool.Push(human);
+            }
         }
 
         void OnRegisterHumanSpawn(RegisterHumanSpawnSignal signal)
@@ -60,7 +65,7 @@ namespace UFOT.Human
 
         void TrySpawn()
         {
-            if (spawnTime < spawnDelay)
+            if (spawnTime < humansConfig.spawnDelay)
                 return;
 
             spawnTime = 0f;

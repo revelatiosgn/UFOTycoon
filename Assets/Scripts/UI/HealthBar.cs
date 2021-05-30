@@ -16,7 +16,7 @@ namespace UFOT.UI
         protected override void UpdateView()
         {
             int current = Mathf.FloorToInt(ufoData.Health);
-            int max = Mathf.FloorToInt(ufoData.UFOConfig.MaxHealth.Value);
+            int max = Mathf.FloorToInt(ufoData.UFOConfig.maxHealth.Value);
             value.text =  $"{current} / {max}";
 
             progressBar.MaxValue = max;
