@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\UI\ProgressBar.cs" />
      <Compile Include="Assets\Scripts\UI\CaptureProgress.cs" />
      <Compile Include="Assets\Scripts\UI\ShopButton.cs" />
+     <Compile Include="Assets\Scripts\Human\HumanMoveState.cs" />
      <None Include="Assets\External\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\External\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\External\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

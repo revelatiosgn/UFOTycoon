@@ -6,9 +6,8 @@ using Zenject;
 
 namespace UFOT.Human
 {
-    public class HumanReturnState : HumanState
+    public class HumanReturnState : HumanMoveState
     {
-        [SerializeField] NavMeshAgent navMeshAgent;
         [SerializeField] HumanActor humanActor;
 
         HumanPool humanPool;
@@ -23,33 +22,38 @@ namespace UFOT.Human
 
         public override void OnEnter()
         {
-            HumanSpawn spawn = humanSpawner.GetRandomSpawn();
-            if (spawn == null)
-            {
+            if (GetRandomSpawnPosition(out Vector3 position))
+                MoveToPosition(position);
+            else
                 fsm.MakeTransition<HumanIdleState>();
-                return;
-            }
-
-            navMeshAgent.destination = spawn.transform.position;
         }
 
         public override void OnUpdate(float dt)
         {
-            // Hack to prevent stuck with other agents
-            if ((navMeshAgent.transform.position - navMeshAgent.destination).sqrMagnitude < 10f)
-                navMeshAgent.radius = 0.001f;
+            NavMeshAgent agent = fsm.NavMeshAgent;
 
-            if (!navMeshAgent.pathPending)
+            // Hack to prevent stuck with other agents
+            if ((agent.transform.position - agent.destination).sqrMagnitude < 10f)
+                agent.radius = 0.001f;
+
+            if (IsStopped())
             {
-                if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
-                {
-                    if (!navMeshAgent.hasPath || navMeshAgent.velocity.sqrMagnitude == 0f)
-                    {
-                        fsm.MakeTransition<HumanIdleState>();
-                        humanPool.Push(humanActor);
-                    }
-                }
+                fsm.MakeTransition<HumanIdleState>();
+                humanPool.Push(humanActor);
             }
+        }
+
+        bool GetRandomSpawnPosition(out Vector3 result)
+        {
+            result = Vector3.zero;
+
+            HumanSpawn spawn = humanSpawner.GetRandomSpawn();
+            if (spawn == null)
+                return false;
+
+            result = spawn.transform.position;
+
+            return true;
         }
     }
 }

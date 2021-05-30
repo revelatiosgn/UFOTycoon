@@ -6,8 +6,10 @@ namespace UFOT.Data
     [CreateAssetMenu(menuName = "Data/Human Config")]
     public class HumanConfig : ScriptableObject
     {
-        public int weight = 70;
+        public float weight = 70;
         public int reward = 35;
+        public float walkSpeed = 1f;
+        public float runSpeed = 1.5f;
     }
 }
 

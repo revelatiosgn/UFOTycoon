@@ -14,18 +14,13 @@ namespace UFOT.Human
 
         float stateTime = 0f;
         float waitTime = 0f;
-        HumanSpawner humanSpawner;
-
-        [Inject]
-        void Construct(HumanSpawner humanSpawner)
-        {
-            this.humanSpawner = humanSpawner;
-        }
+        static readonly int idleId = Animator.StringToHash("Idle");
 
         public override void OnEnter()
         {
             stateTime = 0f;
             waitTime = Random.Range(minWaitTime, maxWaitTime);
+            fsm.Animator.CrossFade(idleId, 0.2f);
         }
 
         public override void OnUpdate(float dt)
