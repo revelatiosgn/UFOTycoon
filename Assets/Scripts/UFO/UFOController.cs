@@ -30,10 +30,17 @@ namespace UFOT.UFO
 
         void FixedUpdate()
         {
+            HandleInput();
+            HandleBorders();
+        }
+
+        void HandleInput()
+        {
             Vector3 input = Vector3.forward * joystick.Vertical + Vector3.right * joystick.Horizontal;
             rb.velocity = input * ufoData.UFOConfig.speed.Value * ufoData.UFOConfig.speedMultiplier;
 
-            HandleBorders();
+            if (rb.velocity != Vector3.zero)
+                rb.MoveRotation(Quaternion.LookRotation(rb.velocity, Vector3.up));
         }
 
         void HandleBorders()
