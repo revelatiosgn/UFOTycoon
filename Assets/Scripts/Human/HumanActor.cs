@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UFOT.Data;
+using UFOT.UI;
 
 namespace UFOT.Human
 {
@@ -10,6 +11,19 @@ namespace UFOT.Human
     {
         [SerializeField] HumanConfig humanConfig;
         public HumanConfig HumanConfig { get => humanConfig; }
+
+        [SerializeField] CaptureProgress captureProgress;
+
+        void OnEnable()
+        {
+            SetCaptureProgress(0f);
+        }
+
+        public void SetCaptureProgress(float progress)
+        {
+            captureProgress.SetProgress(progress);
+            captureProgress.gameObject.SetActive(progress > 0f);
+        }
     }
 }
 

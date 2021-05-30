@@ -10,13 +10,17 @@ namespace UFOT.Data
             this.UFOConfig = ufoConfig;
 
             Coins = ufoConfig.startCoins;
+            Reward = 0;
+            Cargo = 0f;
+            Health = ufoConfig.MaxHealth.Value;
         }
 
         public UFOConfig UFOConfig { get; private set; }
 
         public int Coins { get; set; }
-        public int Cargo { get; set; }
         public int Reward { get; set; }
+        public float Cargo { get; set; }
+        public float Health { get; set; }
     }
 }
 

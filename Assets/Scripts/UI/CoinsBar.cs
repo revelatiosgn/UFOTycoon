@@ -5,28 +5,17 @@ using TMPro;
 using Zenject;
 
 using UFOT.Data;
+using UFOT.Signals;
 
 namespace UFOT.UI
 {   
-    public class CoinsBar : MonoBehaviour
+    public class CoinsBar : UFODataView
     {
-        TMP_Text text;
-        UFOData ufoData;
+        [SerializeField] TMP_Text value;
 
-        [Inject]
-        void Construct(UFOData ufoData)
+        protected override void UpdateView()
         {
-            this.ufoData = ufoData;
-        }
-
-        void Awake()
-        {
-            text = GetComponent<TMP_Text>();
-        }
-
-        void Update()
-        {
-            text.text = ufoData.Coins.ToString();
+            value.text = ufoData.Coins.ToString();
         }
     }
 }

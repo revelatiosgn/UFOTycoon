@@ -2,21 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Zenject;
+
+using UFOT.Data;
 
 namespace UFOT.UI
 {
-    public class HealthBar : MonoBehaviour
+    public class HealthBar : UFODataView
     {
-        TMP_Text text;
+        [SerializeField] ProgressBar progressBar;
+        [SerializeField] TMP_Text value;
 
-        void Awake()
+        protected override void UpdateView()
         {
-            text = GetComponent<TMP_Text>();
-        }
+            int current = Mathf.FloorToInt(ufoData.Health);
+            int max = Mathf.FloorToInt(ufoData.UFOConfig.MaxHealth.Value);
+            value.text =  $"{current} / {max}";
 
-        void Update()
-        {
-            // text.text =  $"{userData.Health} / {userData.MaxHealth}";
+            progressBar.MaxValue = max;
+            progressBar.SetProgress(ufoData.Health);
         }
     }
 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: UFOConfig
   m_EditorClassIdentifier: 
   startCoins: 1000
-  coinsPerHuman: 35
   Speed: {fileID: 11400000, guid: 2be38bba899049e47abe7709e0c6c8df, type: 2}
   Cargo: {fileID: 11400000, guid: f1ae6ca47f3754b448b28b8bf7b4b4de, type: 2}
+  MaxHealth: {fileID: 11400000, guid: b1e12deaf71827344ad0cc752c8465b5, type: 2}

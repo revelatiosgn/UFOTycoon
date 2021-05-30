@@ -30,6 +30,8 @@ namespace UFOT.Core
             Container.DeclareSignal<UfoDataUpdatedSignal>();
             Container.DeclareSignal<HumanDestroyedSignal>();
             Container.DeclareSignal<RegisterHumanSpawnSignal>();
+            Container.DeclareSignal<BaseEnterSignal>();
+            Container.DeclareSignal<BaseExitSignal>();
 
             Application.targetFrameRate = 60;
         }

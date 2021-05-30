@@ -12,10 +12,10 @@ namespace UFOT.UFO
 {
     public class CaptureZone : MonoBehaviour
     {
-        [SerializeField] float captureTimeLimit = 2f;
+        [SerializeField] float captureTimeLimit = 10f;
 
         List<HumanActor> targets = new List<HumanActor>();
-        HumanActor currentTarget = null;
+        HumanActor target = null;
         float captureTime = 0f;
 
         UFOData ufoData;
@@ -45,22 +45,26 @@ namespace UFOT.UFO
             if (ufoData.Cargo == ufoData.UFOConfig.Cargo.Value)
                 return;
 
-            if (currentTarget == null)
+            if (target == null)
             {
                 captureTime = 0f;
 
                 if (targets.Count == 0)
                     return;
 
-                currentTarget = GetCaptureTarget();
+                target = GetCaptureTarget();
             }
 
+            if (target == null)
+                return;
+
             captureTime += Time.deltaTime;
+            target.SetCaptureProgress(captureTime / captureTimeLimit * 100f);
 
             if (captureTime >= captureTimeLimit)
             {
-                commandFactory.Create(currentTarget).Execute();
-                currentTarget = null;
+                commandFactory.Create(target).Execute();
+                target = null;
             }
         }
 
@@ -74,15 +78,18 @@ namespace UFOT.UFO
         {
             HumanActor captureTarget = other.GetComponent<HumanActor>();
             targets.Remove(captureTarget);
-            if (currentTarget == captureTarget)
-                currentTarget = null;
+            if (target == captureTarget)
+            {
+                target.SetCaptureProgress(0f);
+                target = null;
+            }
         }
 
         void OnHumanDestroyed(HumanDestroyedSignal signal)
         {
             targets.Remove(signal.human);
-            if (currentTarget == signal.human)
-                currentTarget = null;
+            if (target == signal.human)
+                target = null;
         }
 
         HumanActor GetCaptureTarget()

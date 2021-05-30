@@ -7,6 +7,7 @@ using Zenject;
 
 using UFOT.Data;
 using UFOT.Commands;
+using UFOT.Signals;
 
 namespace UFOT.UI
 {
@@ -33,12 +34,12 @@ namespace UFOT.UI
 
         void OnEnable()
         {
-            signalBus.Subscribe<UFOT.Signals.UfoDataUpdatedSignal>(UpdateInfo);
+            signalBus.Subscribe<UfoDataUpdatedSignal>(UpdateInfo);
         }
 
         void OnDisable()
         {
-            signalBus.Unsubscribe<UFOT.Signals.UfoDataUpdatedSignal>(UpdateInfo);
+            signalBus.Unsubscribe<UfoDataUpdatedSignal>(UpdateInfo);
         }
 
         public void SetProduct(ShopProduct shopProduct)
@@ -56,8 +57,8 @@ namespace UFOT.UI
         {
             title.text = shopProduct.Config.Title;
 
-            int currentValue = Mathf.RoundToInt(shopProduct.Config.Value);
-            int nextValue = currentValue + Mathf.RoundToInt(shopProduct.Config.Value * shopProduct.Percent * 0.01f);
+            int currentValue = Mathf.FloorToInt(shopProduct.Config.Value);
+            int nextValue = currentValue + Mathf.FloorToInt(shopProduct.Config.Value * shopProduct.Percent * 0.01f);
             value.text = $"{currentValue}->{nextValue}";
             price.text = shopProduct.Cost.ToString();
 

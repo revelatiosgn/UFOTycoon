@@ -2,6 +2,7 @@ using UnityEngine;
 using Zenject;
 
 using UFOT.Data;
+using UFOT.Signals;
 
 namespace UFOT.Commands
 {
@@ -28,8 +29,13 @@ namespace UFOT.Commands
             if (shopProduct == null)
                 return;
 
+            if (ufoData.Coins < shopProduct.Cost)
+                return;
+
+            ufoData.Coins -= shopProduct.Cost;
             shopProduct.Config.Value += shopProduct.Config.Value * (shopProduct.Percent * 0.01f);
-            signalBus.Fire<UFOT.Signals.UfoDataUpdatedSignal>();
+            
+            signalBus.Fire<UfoDataUpdatedSignal>();
         }
 
         public class Factory : PlaceholderFactory<ShopProduct, PurchaseCommand>

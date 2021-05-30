@@ -10,7 +10,7 @@ namespace UFOT.Human
     public class HumanSpawner : MonoBehaviour
     {
         [SerializeField] int maxHumans = 10;
-        [SerializeField] GameObject humanPrefab;
+        [SerializeField] List<GameObject> humanPrefabs;
         [SerializeField] float spawnDelay = 3f;
 
         List<HumanSpawn> spawns = new List<HumanSpawn>();
@@ -41,7 +41,8 @@ namespace UFOT.Human
             int extraHumans = maxHumans - transform.childCount;
             for (int i = 0; i < extraHumans; i++)
             {
-                HumanActor human = Instantiate(humanPrefab, transform).GetComponent<HumanActor>();
+                GameObject randomPrefab = humanPrefabs[Random.Range(0, humanPrefabs.Count)];
+                HumanActor human = Instantiate(randomPrefab, transform).GetComponent<HumanActor>();
                 humanPool.Push(human);
             }
         }

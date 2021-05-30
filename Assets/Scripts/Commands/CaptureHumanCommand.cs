@@ -3,6 +3,7 @@ using Zenject;
 
 using UFOT.Human;
 using UFOT.Data;
+using UFOT.Signals;
 
 namespace UFOT.Commands
 {
@@ -11,12 +12,14 @@ namespace UFOT.Commands
         HumanActor target;
         UFOData ufoData;
         HumanPool humanPool;
+        SignalBus signalBus;
 
         [Inject]
-        void Construct(UFOData ufoData, HumanPool humanPool)
+        void Construct(UFOData ufoData, HumanPool humanPool, SignalBus signalBus)
         {
             this.ufoData = ufoData;
             this.humanPool = humanPool;
+            this.signalBus = signalBus;
         }
 
         public CaptureHumanCommand(HumanActor target)
@@ -35,6 +38,8 @@ namespace UFOT.Commands
             humanPool.Push(target);
             ufoData.Cargo += target.HumanConfig.weight;
             ufoData.Reward += target.HumanConfig.reward;
+
+            signalBus.Fire<UfoDataUpdatedSignal>();
         }
 
         public class Factory : PlaceholderFactory<HumanActor, CaptureHumanCommand>

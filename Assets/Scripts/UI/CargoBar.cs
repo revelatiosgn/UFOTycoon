@@ -4,30 +4,26 @@ using UnityEngine;
 using TMPro;
 using Zenject;
 using UFOT.Data;
+using UFOT.Signals;
 
 namespace UFOT.UI
 {
-    public class CargoBar : MonoBehaviour
+    public class CargoBar : UFODataView
     {
-        TMP_Text text;
-        UFOData ufoData;
+        [SerializeField] ProgressBar cargoProgress;
+        [SerializeField] TMP_Text cargoFill;
+        [SerializeField] TMP_Text reward;
 
-        [Inject]
-        void Construct(UFOData ufoData)
+        protected override void UpdateView()
         {
-            this.ufoData = ufoData;
-        }
+            cargoProgress.MaxValue = ufoData.UFOConfig.Cargo.Value;
+            cargoProgress.SetProgress(ufoData.Cargo);
 
-        void Awake()
-        {
-            text = GetComponent<TMP_Text>();
-        }
-
-        void Update()
-        {
             int current = Mathf.FloorToInt(ufoData.Cargo);
             int max = Mathf.FloorToInt(ufoData.UFOConfig.Cargo.Value);
-            text.text = $"{current} / {max}";
+            cargoFill.text = $"{current} / {max}";
+
+            reward.text = ufoData.Reward.ToString();
         }
     }
 }

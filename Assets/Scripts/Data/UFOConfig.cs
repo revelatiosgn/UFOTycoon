@@ -10,6 +10,7 @@ namespace UFOT.Data
 
         public UFOConfigValue Speed;
         public UFOConfigValue Cargo;
+        public UFOConfigValue MaxHealth;
     }
 }
 

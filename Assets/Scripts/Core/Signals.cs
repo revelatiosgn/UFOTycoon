@@ -15,4 +15,12 @@ namespace UFOT.Signals
     {
         public HumanSpawn humanSpawn;
     }
+
+    public class BaseEnterSignal
+    {
+    }
+
+    public class BaseExitSignal
+    {
+    }
 }
