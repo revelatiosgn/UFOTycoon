@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace UFOT.Core
 {
+    /// <summary>
+    /// Smooth update self position to target position
+    /// </summary>
     public class TargetFollower : MonoBehaviour
     {
         [SerializeField] Transform target;

@@ -8,6 +8,9 @@ using UFOT.Signals;
 
 namespace UFOT.UI
 {
+    /// <summary>
+    /// UI element represents cargo fill and reward
+    /// </summary>
     public class CargoBar : UFODataView
     {
         [SerializeField] ProgressBar cargoProgress;

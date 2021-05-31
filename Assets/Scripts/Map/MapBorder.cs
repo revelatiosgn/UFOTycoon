@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace UFOT.Map
 {
+    /// <summary>
+    /// Configuration of map border
+    /// </summary>
     public class MapBorder : MonoBehaviour
     {
         [SerializeField] float left, right, top, bottom;

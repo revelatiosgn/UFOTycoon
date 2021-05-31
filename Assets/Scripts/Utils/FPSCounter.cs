@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace UFOT.Utils
 {
+    /// <summary>
+    /// Show fps
+    /// </summary>
     public class FPSCounter : MonoBehaviour
     {
         float deltaTime = 0.0f;

@@ -5,13 +5,11 @@ using Zenject;
 
 namespace UFOT.Human
 {
+    /// <summary>
+    /// Human State when Idle
+    /// </summary>
     public class HumanIdleState : HumanState
     {
-        [SerializeField] float minWaitTime = 1f;
-        [SerializeField] float maxWaitTime = 3f;
-        [SerializeField] float chanceToWalk = 5f;
-        [SerializeField] float chanceToReturn = 1f;
-
         float stateTime = 0f;
         float waitTime = 0f;
         static readonly int idleId = Animator.StringToHash("Idle");
@@ -19,17 +17,17 @@ namespace UFOT.Human
         public override void OnEnter()
         {
             stateTime = 0f;
-            waitTime = Random.Range(minWaitTime, maxWaitTime);
-            fsm.Animator.CrossFade(idleId, 0.2f);
-            fsm.NavMeshAgent.isStopped = false;
+            fsm.HumanController.Stop();
+            fsm.HumanController.SetAgentRadius();
         }
 
         public override void OnUpdate(float dt)
         {
             stateTime += dt;
-            if (stateTime > waitTime)
+            if (stateTime > fsm.HumanController.HumanConfig.idleTime)
             {
-                if (Random.Range(0f, chanceToWalk + chanceToReturn) < chanceToWalk)
+                float rnd = Random.Range(0f, fsm.HumanController.HumanConfig.walkChance + fsm.HumanController.HumanConfig.returnChance);
+                if (rnd < fsm.HumanController.HumanConfig.walkChance)
                     fsm.MakeTransition<HumanWalkState>();
                 else
                     fsm.MakeTransition<HumanReturnState>();

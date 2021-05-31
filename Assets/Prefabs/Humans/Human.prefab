@@ -82,8 +82,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4407532689033bf45bf2f2e25987a224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  humanConfig: {fileID: 11400000, guid: 8452e553f8dc5a3458d00a4acf9156f5, type: 2}
-  captureProgress: {fileID: 6640368128731540184}
+  humanConfig: {fileID: 0}
+  captureProgress: {fileID: 3524459583224557990}
+  navMeshAgent: {fileID: 1037811892}
+  animator: {fileID: 0}
 --- !u!1 &1885492051172241660
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,6 +382,7 @@ GameObject:
   - component: {fileID: 3051553729463551132}
   - component: {fileID: 7231925441042005960}
   - component: {fileID: 9095271102960279803}
+  - component: {fileID: 3524459583224557990}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -463,6 +466,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f04c0e451eff5be4f997e23575bd0840, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3524459583224557990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7265136089066717508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81f34322763d9144a4f104303f1a665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  progressBar: {fileID: 3480173305981385838}
+  value: {fileID: 7249528372335048476}
 --- !u!1 &7631827968509781707
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,7 +491,6 @@ GameObject:
   - component: {fileID: 5293622529235654433}
   - component: {fileID: 1895332216484766695}
   - component: {fileID: 3480173305981385838}
-  - component: {fileID: 6640368128731540184}
   m_Layer: 5
   m_Name: CaptureProgress
   m_TagString: Untagged
@@ -568,20 +584,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 1895332216484766695}
---- !u!114 &6640368128731540184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7631827968509781707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a81f34322763d9144a4f104303f1a665, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  progressBar: {fileID: 3480173305981385838}
-  value: {fileID: 7249528372335048476}
 --- !u!1 &8357906424999287620
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,9 +631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: {fileID: 8417345803001276564}
-  humanActor: {fileID: 3456130422888850245}
-  navMeshAgent: {fileID: 1037811892}
-  animator: {fileID: 0}
+  humanController: {fileID: 3456130422888850245}
 --- !u!114 &8417345803001276564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -645,8 +645,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minWaitTime: 1
-  maxWaitTime: 2
-  chanceToWalk: 10
+  maxWaitTime: 1
+  chanceToWalk: 1
   chanceToReturn: 1
 --- !u!114 &5742995506403277081
 MonoBehaviour:
@@ -673,7 +673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6935b37576fb89a48bd06f5fc4efb879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  humanActor: {fileID: 3456130422888850245}
+  humanController: {fileID: 0}
 --- !u!1 &8390759434113908542
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,9 @@ using UFOT.Data;
 
 namespace UFOT.UI
 {
+    /// <summary>
+    /// UI element represents Player health points
+    /// </summary>
     public class HealthBar : UFODataView
     {
         [SerializeField] ProgressBar progressBar;

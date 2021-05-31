@@ -6,6 +6,9 @@ using TMPro;
 
 namespace UFOT.UI
 {
+    /// <summary>
+    /// Base UI element for progress bar
+    /// </summary>
     public class ProgressBar : MonoBehaviour
     {
         [SerializeField] Slider slider;

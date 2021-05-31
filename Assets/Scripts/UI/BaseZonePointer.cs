@@ -5,6 +5,9 @@ using UFOT.UFO;
 
 namespace UFOT.UI
 {
+    /// <summary>
+    /// UI element represents landing pad direction
+    /// </summary>
     public class BaseZonePointer : MonoBehaviour
     {
         [SerializeField] GameObject pointer;
@@ -51,15 +54,31 @@ namespace UFOT.UI
             if (ufoController == null || ufoBase == null)
                 return;
 
-            Vector3 screenBase = Camera.main.WorldToScreenPoint(ufoBase.position);
-            Vector3 screenUFO = Camera.main.WorldToScreenPoint(ufoController.transform.position);
-            Vector3 direction = screenBase - screenUFO;
-            if (direction != Vector3.zero)
+            Vector2 screenBase = WorldToScreenPointProjected(Camera.main, ufoBase.position);
+            Vector2 screenUFO = WorldToScreenPointProjected(Camera.main, ufoController.transform.position);;
+
+            Vector2 direction = screenBase - screenUFO;
+            if (direction != Vector2.zero)
             {
                 direction.Normalize();
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0f, 0f, angle);
             }
+        }
+
+        Vector2 WorldToScreenPointProjected(Camera camera, Vector3 worldPos)
+        {
+            Vector3 camNormal = camera.transform.forward;
+            Vector3 vectorFromCam = worldPos - camera.transform.position;
+            float camNormDot = Vector3.Dot(camNormal, vectorFromCam);
+            if (camNormDot <= 0)
+            {
+                // we are behind the camera forward facing plane, project the position in front of the plane
+                Vector3 proj = (camNormal * camNormDot * 1.01f);
+                worldPos = camera.transform.position + (vectorFromCam - proj);
+            }
+
+            return RectTransformUtility.WorldToScreenPoint(camera, worldPos);
         }
     }
 }

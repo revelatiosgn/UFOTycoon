@@ -2,31 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using UFOT.Data;
-using UFOT.UI;
 using Zenject;
 
 namespace UFOT.Human
 {
-    public class HumanFactory : IFactory<Transform, HumanActor>
+    /// <summary>
+    /// Human Zenject factory
+    /// </summary>
+    public class HumanFactory : IFactory<GameObject, Transform, HumanController>
     {
         DiContainer container;
-        HumansConfig humansConfig;
 
-        public HumanFactory(DiContainer container, HumansConfig humansConfig)
+        public HumanFactory(DiContainer container)
         {
             this.container = container;
-            this.humansConfig = humansConfig;
         }
 
-        public HumanActor Create(Transform parent)
+        public HumanController Create(GameObject prefab, Transform parent)
         {
-            if (humansConfig.prefabs.Count == 0)
-                return null;
-
-            int index = Random.Range(0, humansConfig.prefabs.Count);
-
-            return container.InstantiatePrefabForComponent<HumanActor>(humansConfig.prefabs[index], parent);
+            return container.InstantiatePrefabForComponent<HumanController>(prefab, parent);
         }
     }
 }

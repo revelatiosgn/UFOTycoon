@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace UFOT.Data
 {
+    /// <summary>
+    /// Shop configuration SO
+    /// </summary>
     [CreateAssetMenu(menuName = "Data/Shop Config")]
     public class ShopConfig : ScriptableObject
     {
@@ -11,6 +14,9 @@ namespace UFOT.Data
         public List<ShopProduct> Products { get => products; }
     }
 
+    /// <summary>
+    /// Shop product configuration SO
+    /// </summary>
     [System.Serializable]
     public class ShopProduct
     {

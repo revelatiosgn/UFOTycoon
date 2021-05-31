@@ -17,6 +17,17 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3456130422888850245, guid: c0ace7e83b17690409cdf9b96579893c,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 6148121946565538447}
+    - target: {fileID: 3456130422888850245, guid: c0ace7e83b17690409cdf9b96579893c,
+        type: 3}
+      propertyPath: humanConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 8452e553f8dc5a3458d00a4acf9156f5,
+        type: 2}
     - target: {fileID: 3991743283296660302, guid: c0ace7e83b17690409cdf9b96579893c,
         type: 3}
       propertyPath: animator

@@ -6,6 +6,9 @@ using TMPro;
 
 namespace UFOT.UI
 {
+    /// <summary>
+    /// UI element represents human capturing process
+    /// </summary>
     public class CaptureProgress : MonoBehaviour
     {
         [SerializeField] ProgressBar progressBar;

@@ -5,18 +5,22 @@ using UnityEngine.AI;
 
 namespace UFOT.Human
 {
-    public class HumanWalkState : HumanMoveState
+    /// <summary>
+    /// Human State when moving to random position
+    /// </summary>
+    public class HumanWalkState : HumanState
     {
         [SerializeField] float walkRadius = 5f;
 
         public override void OnEnter()
         {
-            MoveToPosition(GetRandomDestination());
+            fsm.HumanController.SetAgentRadius();
+            fsm.HumanController.MoveToPosition(GetRandomDestination());
         }
 
         public override void OnUpdate(float dt)
         {   
-            if (IsStopped())
+            if (fsm.HumanController.IsStopped())
                 fsm.MakeTransition<HumanIdleState>();
         }
 

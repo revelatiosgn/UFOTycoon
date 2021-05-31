@@ -7,6 +7,9 @@ using UFOT.Data;
 
 namespace UFOT.UFO
 {
+    /// <summary>
+    /// Handle ship model size provided by UFOData
+    /// </summary>
     public class UFOShip : MonoBehaviour
     {
         UFOData ufoData;
@@ -19,7 +22,7 @@ namespace UFOT.UFO
 
         void Update()
         {
-            transform.localScale = Vector3.one * (this.ufoData.UFOConfig.shipSize.Value / this.ufoData.UFOConfig.shipSize.BaseValue);
+            transform.localScale = Vector3.one * (ufoData.UFOConfig.shipSize.Value / ufoData.UFOConfig.shipSize.BaseValue);
         }
     }
 }

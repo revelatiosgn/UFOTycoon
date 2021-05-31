@@ -6,6 +6,9 @@ using UFOT.Signals;
 
 namespace UFOT.Commands
 {
+    /// <summary>
+    /// Empty UFO cargo and update coins
+    /// </summary>
     public class UnloadHumansCommand : ICommand
     {
         UFOData ufoData;

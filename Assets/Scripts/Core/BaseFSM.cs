@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace UFOT.Core
 {
+    /// <summary>
+    /// Abstract base class for FSMs
+    /// </summary>
     public abstract class BaseFSM<StateType> : MonoBehaviour where StateType : BaseFSMState
     {
         [SerializeField] StateType currentState;

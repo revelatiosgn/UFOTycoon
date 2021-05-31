@@ -7,15 +7,14 @@ using UnityEngine.AI;
 
 namespace UFOT.Human
 {
+    /// <summary>
+    /// Controls human behaviour
+    /// </summary>
     public class HumanFSM : BaseFSM<HumanState>
     {
-        [SerializeField] HumanActor humanActor;
-        [SerializeField] NavMeshAgent navMeshAgent;
-        [SerializeField] Animator animator;
+        [SerializeField] HumanController humanController;
 
-        public HumanActor HumanActor { get => humanActor; }
-        public NavMeshAgent NavMeshAgent { get => navMeshAgent; }
-        public Animator Animator { get => animator; }
+        public HumanController HumanController { get => humanController; }
 
         void OnEnable()
         {

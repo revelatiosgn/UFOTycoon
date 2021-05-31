@@ -3,6 +3,9 @@ using UnityEngine.Events;
 
 namespace UFOT.Data
 {
+    /// <summary>
+    /// Player data storage
+    /// </summary>
     public class UFOData
     {
         public UFOData(UFOConfig ufoConfig)

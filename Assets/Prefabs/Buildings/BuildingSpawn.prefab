@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2216932584679989138}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2624224383357664460
 MonoBehaviour:
@@ -43,6 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd105e79912b7d429dbd497153355a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items:
+  - prefab: {fileID: 7341079430966957147, guid: 861687d675192cb4cbd9b3351d8036ce,
+      type: 3}
+    chance: 1
+  - prefab: {fileID: 7341079430966957147, guid: d4d2a1fe05055a54e9fa25c4aff7887f,
+      type: 3}
+    chance: 1
+  spawnDelay: 5
 --- !u!1001 &6865482721210577420
 PrefabInstance:
   m_ObjectHideFlags: 0

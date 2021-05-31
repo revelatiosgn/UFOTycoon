@@ -8,6 +8,9 @@ using UFOT.Map;
 
 namespace UFOT.UFO
 {
+    /// <summary>
+    /// Controls Player movement
+    /// </summary>
     public class UFOController : MonoBehaviour
     {
         [SerializeField] FloatingJoystick joystick;

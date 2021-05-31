@@ -8,9 +8,12 @@ using UFOT.Data;
 
 namespace UFOT.Human
 {
+    /// <summary>
+    /// Human Pool object
+    /// </summary>
     public class HumanPool
     {
-        Queue<HumanActor> queue = new Queue<HumanActor>();
+        Dictionary<HumanConfig, Queue<HumanController>> dictionary = new Dictionary<HumanConfig, Queue<HumanController>>();
 
         SignalBus signalBus;
 
@@ -19,22 +22,31 @@ namespace UFOT.Human
             this.signalBus = signalBus;
         }
 
-        public void Push(HumanActor target)
+        public void Push(HumanController target)
         {
+            if (!dictionary.ContainsKey(target.HumanConfig))
+                dictionary.Add(target.HumanConfig, new Queue<HumanController>());
+
             target.gameObject.SetActive(false);
-            queue.Enqueue(target);
+            dictionary[target.HumanConfig].Enqueue(target);
 
             signalBus.Fire(new HumanDestroyedSignal() { human = target });
         }
 
-        public HumanActor Pull()
+        public HumanController Pull(HumanConfig humanConfig)
         {
-            if (queue.Count == 0)
-                return null;
+            Queue<HumanController> queue;
+            if (dictionary.TryGetValue(humanConfig, out queue))
+            {
+                if (queue.Count > 0)
+                {
+                    HumanController human = queue.Dequeue();
+                    human.gameObject.SetActive(true);
+                    return human;
+                }
+            }
 
-            HumanActor human = queue.Dequeue();
-            human.gameObject.SetActive(true);
-            return human;
+            return null;
         }
     }
 }

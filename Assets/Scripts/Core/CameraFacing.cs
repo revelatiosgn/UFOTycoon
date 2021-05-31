@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace UFOT.Core
 {
+    /// <summary>
+    /// Turns self transform to main camera forward every LateUpdate
+    /// </summary>
     public class CameraFacing : MonoBehaviour
     {
         void LateUpdate()

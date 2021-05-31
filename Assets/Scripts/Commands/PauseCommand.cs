@@ -3,6 +3,9 @@ using Zenject;
 
 namespace UFOT.Commands
 {
+    /// <summary>
+    /// Pause/Unpause game
+    /// </summary>
     public class PauseCommand : ICommand
     {
         bool isPaused = false;

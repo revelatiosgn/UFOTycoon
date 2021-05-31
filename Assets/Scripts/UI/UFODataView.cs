@@ -8,6 +8,9 @@ using UFOT.Signals;
 
 namespace UFOT.UI
 {
+    /// <summary>
+    /// Base abstract UI element subscribed to UFOData update signal
+    /// </summary>
     public abstract class UFODataView : MonoBehaviour
     {
         protected UFOData ufoData;

@@ -11,6 +11,9 @@ using UFOT.Signals;
 
 namespace UFOT.UI
 {
+    /// <summary>
+    /// UI element represents ShopProduct
+    /// </summary>
     public class ShopProductPanel : UFODataView
     {
         [SerializeField] TMP_Text title;

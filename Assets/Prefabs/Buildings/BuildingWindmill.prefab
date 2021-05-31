@@ -140,7 +140,7 @@ PrefabInstance:
     - target: {fileID: 4783265483438851189, guid: ee892e56516fb4847a47e5dce3eb0d81,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 95
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8035028244206049785, guid: ee892e56516fb4847a47e5dce3eb0d81,
         type: 3}
@@ -150,7 +150,7 @@ PrefabInstance:
     - target: {fileID: 8035028244206049785, guid: ee892e56516fb4847a47e5dce3eb0d81,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 95
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee892e56516fb4847a47e5dce3eb0d81, type: 3}

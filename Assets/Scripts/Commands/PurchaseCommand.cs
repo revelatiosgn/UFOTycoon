@@ -6,6 +6,9 @@ using UFOT.Signals;
 
 namespace UFOT.Commands
 {
+    /// <summary>
+    /// Purchase ShopProduct
+    /// </summary>
     public class PurchaseCommand : ICommand
     {
         ShopProduct shopProduct;

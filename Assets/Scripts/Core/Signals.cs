@@ -2,24 +2,31 @@
 
 namespace UFOT.Signals
 {
+    /// <summary>
+    /// Fires when UFOData updated
+    /// </summary>
     public class UfoDataUpdatedSignal
     {
     }
     
+    /// <summary>
+    /// Fires when Human pushed to Pool
+    /// </summary>
     public class HumanDestroyedSignal
     {
-        public HumanActor human;
+        public HumanController human;
     }
 
-    public class RegisterHumanSpawnSignal
-    {
-        public HumanSpawn humanSpawn;
-    }
-
+    /// <summary>
+    /// Fires when UFO enter base
+    /// </summary>
     public class BaseEnterSignal
     {
     }
-
+    
+    /// <summary>
+    /// Fires when UFO exit base
+    /// </summary>
     public class BaseExitSignal
     {
     }

@@ -8,6 +8,9 @@ using UFOT.Signals;
 
 namespace UFOT.UFO
 {
+    /// <summary>
+    /// Trigger for UFO landing pad
+    /// </summary>
     public class BaseZone : MonoBehaviour
     {
         UnloadHumansCommand.Factory unloadHumans;

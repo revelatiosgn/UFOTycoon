@@ -10,10 +10,13 @@ using UFOT.Commands;
 
 namespace UFOT.UFO
 {
+    /// <summary>
+    /// Trigger for capturing humans
+    /// </summary>
     public class CaptureZone : MonoBehaviour
     {
-        List<HumanActor> targets = new List<HumanActor>();
-        HumanActor target = null;
+        List<HumanController> targets = new List<HumanController>();
+        HumanController target = null;
         float captureTime = 0f;
 
         UFOData ufoData;
@@ -46,13 +49,13 @@ namespace UFOT.UFO
 
         void OnTriggerEnter(Collider other)
         {
-            HumanActor human = other.GetComponent<HumanActor>();
+            HumanController human = other.GetComponent<HumanController>();
             targets.Add(human);
         }
         
         void OnTriggerExit(Collider other)
         {
-            HumanActor captureTarget = other.GetComponent<HumanActor>();
+            HumanController captureTarget = other.GetComponent<HumanController>();
             targets.Remove(captureTarget);
             if (target == captureTarget)
             {
@@ -68,9 +71,9 @@ namespace UFOT.UFO
                 target = null;
         }
 
-        HumanActor GetCaptureTarget()
+        HumanController GetCaptureTarget()
         {
-            return targets.Find((HumanActor human) => {
+            return targets.Find((HumanController human) => {
                 if (ufoData.Cargo + human.HumanConfig.weight <= ufoData.UFOConfig.maxCargo.Value)
                     return true;
                 return false;
@@ -107,7 +110,7 @@ namespace UFOT.UFO
 
         void UpdateSize()
         {
-            transform.localScale = Vector3.one * (this.ufoData.UFOConfig.captureSize.Value / this.ufoData.UFOConfig.captureSize.BaseValue);
+            transform.localScale = Vector3.one * (ufoData.UFOConfig.captureSize.Value / ufoData.UFOConfig.captureSize.BaseValue);
         }
     }
 }

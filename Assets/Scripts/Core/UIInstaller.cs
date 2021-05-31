@@ -9,6 +9,9 @@ using UFOT.UI;
 
 namespace UFOT.Core
 {
+    /// <summary>
+    /// Zenject binding installer for UI
+    /// </summary>
     public class UIInstaller : MonoInstaller
     {
         [SerializeField] GameObject shopProductPrefab;

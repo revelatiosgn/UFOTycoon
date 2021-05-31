@@ -6,51 +6,46 @@ using Zenject;
 
 namespace UFOT.Human
 {
-    public class HumanReturnState : HumanMoveState
+    /// <summary>
+    /// Human State when moving to building
+    /// </summary>
+    public class HumanReturnState : HumanState
     {
-        [SerializeField] HumanActor humanActor;
+        [SerializeField] HumanController humanController;
 
         HumanPool humanPool;
-        HumanSpawner humanSpawner;
+        HumanRoot humanRoot;
 
         [Inject]
-        void Construct(HumanPool humanPool, HumanSpawner humanSpawner)
+        void Construct(HumanRoot humanRoot, HumanPool humanPool)
         {
             this.humanPool = humanPool;
-            this.humanSpawner = humanSpawner;
+            this.humanRoot = humanRoot;
         }
 
         public override void OnEnter()
         {
-            if (GetRandomSpawnPosition(out Vector3 position))
-                MoveToPosition(position);
+            fsm.HumanController.SetAgentRadius(0.001f);
+            if (GetReturnPosition(out Vector3 position))
+                fsm.HumanController.MoveToPosition(position, true);
             else
                 fsm.MakeTransition<HumanIdleState>();
         }
 
         public override void OnUpdate(float dt)
         {
-            NavMeshAgent agent = fsm.NavMeshAgent;
-
-            // Hack to prevent stuck with other agents
-            if ((agent.transform.position - agent.destination).sqrMagnitude < 10f)
-                agent.radius = 0.001f;
-
-            if (IsStopped())
-            {
-                humanPool.Push(humanActor);
-            }
+            if (fsm.HumanController.IsStopped())
+                humanPool.Push(fsm.HumanController);
         }
 
-        bool GetRandomSpawnPosition(out Vector3 result)
+        bool GetReturnPosition(out Vector3 position)
         {
-            result = Vector3.zero;
-
-            HumanSpawn spawn = humanSpawner.GetRandomSpawn();
-            if (spawn == null)
+            position = Vector3.zero;
+            if (humanRoot.Spawns.Count == 0)
                 return false;
 
-            result = spawn.transform.position;
+            HumanSpawn rndSpawn = humanRoot.Spawns[Random.Range(0, humanRoot.Spawns.Count)];
+            position = rndSpawn.transform.position;
 
             return true;
         }

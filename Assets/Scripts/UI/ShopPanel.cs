@@ -8,6 +8,9 @@ using UFOT.Commands;
 
 namespace UFOT.UI
 {
+    /// <summary>
+    /// UI element container for ShopProducts
+    /// </summary>
     public class ShopPanel : MonoBehaviour
     {
         [SerializeField] GameObject productsList;

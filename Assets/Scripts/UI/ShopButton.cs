@@ -9,6 +9,9 @@ using System;
 
 namespace UFOT.UI
 {
+    /// <summary>
+    /// UI element opens ShopPanel
+    /// </summary>
     public class ShopButton : MonoBehaviour
     {
         [SerializeField] GameObject button;

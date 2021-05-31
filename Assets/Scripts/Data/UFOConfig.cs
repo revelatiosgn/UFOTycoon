@@ -3,6 +3,9 @@ using UnityEngine.Events;
 
 namespace UFOT.Data
 {
+    /// <summary>
+    /// UFO configuration SO
+    /// </summary>
     [CreateAssetMenu(menuName = "Data/UFO Config")]
     public class UFOConfig : ScriptableObject
     {

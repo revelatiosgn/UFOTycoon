@@ -40,7 +40,9 @@
      <Compile Include="Assets\Scripts\UFO\CaptureZone.cs" />
      <Compile Include="Assets\Scripts\Human\HumanFSM.cs" />
      <Compile Include="Assets\Scripts\Core\BaseFSM.cs" />
-     <Compile Include="Assets\Scripts\Human\HumanActor.cs" />
+     <Compile Include="Assets\Scripts\UI\StartButton.cs" />
+     <Compile Include="Assets\Scripts\Commands\PauseCommand.cs" />
+     <Compile Include="Assets\Scripts\Human\HumanController.cs" />
      <Compile Include="Assets\Scripts\UI\ProgressBar.cs" />
      <Compile Include="Assets\Scripts\UI\ShopProductPanel.cs" />
      <Compile Include="Assets\Scripts\Commands\UnloadHumansCommand.cs" />
@@ -48,6 +50,7 @@
      <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
      <Compile Include="Assets\Scripts\UI\CargoBar.cs" />
      <Compile Include="Assets\Scripts\Human\HumanSpawn.cs" />
+     <Compile Include="Assets\Scripts\UI\BaseZonePointer.cs" />
      <Compile Include="Assets\Scripts\UI\ShopButton.cs" />
      <Compile Include="Assets\Scripts\Human\HumanWalkState.cs" />
      <Compile Include="Assets\Scripts\UFO\UFOController.cs" />
@@ -59,7 +62,6 @@
      <Compile Include="Assets\Scripts\Data\UFOConfig.cs" />
      <Compile Include="Assets\Scripts\Human\HumanState.cs" />
      <Compile Include="Assets\Scripts\UFO\BaseZone.cs" />
-     <Compile Include="Assets\Scripts\Human\HumanMoveState.cs" />
      <Compile Include="Assets\Scripts\Core\CameraFacing.cs" />
      <Compile Include="Assets\Scripts\Human\HumanPool.cs" />
      <Compile Include="Assets\Scripts\UFO\UFOShip.cs" />
@@ -69,18 +71,15 @@
      <Compile Include="Assets\Scripts\Human\HumanFactory.cs" />
      <Compile Include="Assets\Scripts\Core\BaseFSMState.cs" />
      <Compile Include="Assets\Scripts\Core\TargetFollower.cs" />
-     <Compile Include="Assets\Scripts\Data\HumansConfig.cs" />
      <Compile Include="Assets\Scripts\UI\CoinsBar.cs" />
      <Compile Include="Assets\Scripts\UI\UFODataView.cs" />
      <Compile Include="Assets\Scripts\Human\HumanReturnState.cs" />
-     <Compile Include="Assets\Scripts\Human\HumanSpawner.cs" />
      <Compile Include="Assets\Scripts\Data\UFOData.cs" />
      <Compile Include="Assets\Scripts\Core\UIInstaller.cs" />
      <Compile Include="Assets\Scripts\Data\UFOConfigValue.cs" />
      <Compile Include="Assets\Scripts\Data\ShopConfig.cs" />
-     <Compile Include="Assets\Scripts\Commands\PauseCommand.cs" />
      <Compile Include="Assets\Scripts\Map\MapBorder.cs" />
-     <Compile Include="Assets\Scripts\UI\BaseZonePointer.cs" />
+     <Compile Include="Assets\Scripts\Human\HumanRoot.cs" />
      <None Include="Assets\External\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\External\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\External\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

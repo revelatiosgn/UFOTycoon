@@ -7,9 +7,12 @@ using UFOT.Signals;
 
 namespace UFOT.Commands
 {
+    /// <summary>
+    /// Push Human to Pool and update UFOData
+    /// </summary>
     public class CaptureHumanCommand : ICommand
     {
-        HumanActor target;
+        HumanController target;
         UFOData ufoData;
         HumanPool humanPool;
         SignalBus signalBus;
@@ -22,7 +25,7 @@ namespace UFOT.Commands
             this.signalBus = signalBus;
         }
 
-        public CaptureHumanCommand(HumanActor target)
+        public CaptureHumanCommand(HumanController target)
         {
             this.target = target;
         }
@@ -42,7 +45,7 @@ namespace UFOT.Commands
             signalBus.Fire<UfoDataUpdatedSignal>();
         }
 
-        public class Factory : PlaceholderFactory<HumanActor, CaptureHumanCommand>
+        public class Factory : PlaceholderFactory<HumanController, CaptureHumanCommand>
         {
         }
     }
